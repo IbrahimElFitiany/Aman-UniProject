@@ -1,0 +1,33 @@
+USER:
+
+Login {done}
+Register {done}
+=====
+List Rooms {done}
+Add Room (name , sensor option) {done}
+Remove Room {done}
+=====
+Add furniture to Room (name , sensor option) {done}
+Delete Furniture from Room (furnitureName) {done}
+update Room (update room name , update sensor) {}
+Recive Email {done}
+
+-------------------------------------------------------
+
+Thief:
+Login after 3 failed{done}
+trigger door sensor (if exists) {done}
+trigger movement sensor (if exists) {done}
+log thief interaction to rooms
+
+-------------------------------------------------------
+Police:
+Track user houses in Real-time (mqtt prob)(websockets) {done}
+red to mark theif , green to mark user 
+see how many rooms in the house {done}
+track theft
+take action (fire alarm)
+
+-------------------------------------------------------
+Sensor:
+send alert to Police (mqtt prob) {done}

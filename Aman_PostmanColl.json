@@ -1,0 +1,480 @@
+{
+	"info": {
+		"_postman_id": "642a3957-0c39-4d0d-8633-f665f0703a15",
+		"name": "BAS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39265189"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"unknown.fbx\",\r\n    \"password\": \"fbx\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"unknown.fbx\",\r\n    \"password\": \"fbx\",\r\n    \"email\": \"it.unknownfbx@gmail.com\",\r\n    \"latitude\": 5005,\r\n    \"longitude\": 504242,\r\n    \"address\": \"share3 ammar ebn yasser bgwar mdrst el nozha\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HouseManagement",
+			"item": [
+				{
+					"name": "listRooms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJpYnJhaGltVGFoYS5vYmoiLCJpc1RoZWlmIjp0cnVlLCJpYXQiOjE3MzI0NjU0NzksImV4cCI6MTczMjQ2OTA3OX0.if0_p8keVrSk3XGQmv0L3s-KVjp26_JpooBMKaJu5cY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/rooms/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"rooms",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addRoom",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJ1bmtub3duLmZieCIsImlzVGhpZWYiOmZhbHNlLCJpYXQiOjE3MzQxNjcyNTUsImV4cCI6MTczNDE3MDg1NX0.0yYDFpz-aewR6PotJqEtD2_PU-_1XC7BFD5BkFDJo1Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roomName\": \"unknowngamingroom\",\r\n    \"hasSensor\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/addroom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"addroom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeRoom",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJpYnJhaGltVGFoYS5vYmoiLCJpYXQiOjE3MzI0MDUzMDEsImV4cCI6MTczMjQwODkwMX0.uUjP2KAz-91CDBPwvQmoJRwJ3maV1tGZ37Mkj1k6ec8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roomName\": \"roomwithsensor2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/removeRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"removeRoom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RoomManagement",
+			"item": [
+				{
+					"name": "listFurniture",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1bmtub3duIiwiaXNUaGllZiI6dHJ1ZSwiaWF0IjoxNzM0MTU1NDA5LCJleHAiOjE3MzQxNTkwMDl9.7JZOvlc6HSO-dAPGCxyj_IsOckPMRH88vrv_xQSyLlM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/rooms/:roomname",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"rooms",
+								":roomname"
+							],
+							"variable": [
+								{
+									"key": "roomname",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addFurniture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksInVzZXJuYW1lIjoibW83c2VuIiwiaXNUaGllZiI6dHJ1ZSwiaWF0IjoxNzM0MTU0MzU5LCJleHAiOjE3MzQxNTc5NTl9.iGokdC3LvtfTph1k0rwySNEGnVxSNKEa9vTLCPM0gMk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"furnitureName\": \"tv\",\r\n    \"hasSensor\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/rooms/:roomname/addFurniture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"rooms",
+								":roomname",
+								"addFurniture"
+							],
+							"variable": [
+								{
+									"key": "roomname",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFurniture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJ1bmtub3duLmZieCIsImlzVGhpZWYiOmZhbHNlLCJpYXQiOjE3MzQwOTE4OTcsImV4cCI6MTczNDA5NTQ5N30.MYpd_P_u5bTixQTniyAfez8gJ9LvMOCZI9eEdtIkQ0E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"furnitureName\": \"pc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/rooms/:roomname/delete_furniture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"rooms",
+								":roomname",
+								"delete_furniture"
+							],
+							"variable": [
+								{
+									"key": "roomname",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clickOnFurniture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsInVzZXJuYW1lIjoidW5rbm93bi5mYngiLCJpc1RoaWVmIjp0cnVlLCJpYXQiOjE3MzQxNTM1NDksImV4cCI6MTczNDE1NzE0OX0.28511tp3gZC91F6auvoWVmzgBdXoy6YZvCOM_jNPPlM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/rooms/:roomname/:furnitureName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"rooms",
+								":roomname",
+								":furnitureName"
+							],
+							"variable": [
+								{
+									"key": "roomname",
+									"value": ""
+								},
+								{
+									"key": "furnitureName",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PoliceSys",
+			"item": [
+				{
+					"name": "Police Track",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJpYnJhaGltZ2FtZTN5IiwiaXNUaGllZiI6dHJ1ZSwiaWF0IjoxNzMyNDcxMzMwLCJleHAiOjE3MzI0NzQ5MzB9.WzM_dFY-QpXE4MRXoHJ2iP8tBhLnfIypRbl8TFNQmiA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/police/track",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"police",
+								"track"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Track Rooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/police/:houseId/trackRooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"police",
+								":houseId",
+								"trackRooms"
+							],
+							"variable": [
+								{
+									"key": "houseId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fire Alarm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"houseId\": 1,\r\n    \"roomId\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/police/firealarm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"police",
+								"firealarm"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

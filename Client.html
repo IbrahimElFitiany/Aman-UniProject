@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Test</title>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            transition: background-color 0.2s;
+        }
+
+        .log {
+            color: green;
+            margin: 10px 0;
+        }
+
+        .error {
+            color: red;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Socket.IO Test Page</h1>
+    <div id="status" class="log">Connecting to server...</div>
+    <div id="messages"></div>
+
+    <script>
+        // Connect to the '/police/track' namespace
+        const socket = io('http://localhost:3001/police/track');
+
+        let flickerInterval = null;
+
+        // Handle connection success
+        socket.on('connect', () => {
+            document.getElementById('status').textContent = "Connected to /police/track namespace.";
+        });
+
+        // Handle disconnection
+        socket.on('disconnect', () => {
+            document.getElementById('status').textContent = "Disconnected from /police/track namespace.";
+            document.getElementById('status').className = "error";
+            stopFlickering(); // Stop flickering on disconnect
+        });
+
+        // Listen for 'takeAction' events
+        socket.on('takeAction', (data) => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = "log";
+            messageDiv.textContent = `Action Taken: ${data.message} | House: ${data.houseId}, Room: ${data.roomId}`;
+            document.getElementById('messages').appendChild(messageDiv);
+
+            startFlickering(); // Start infinite flickering
+        });
+
+        // Listen for 'actionTaken' events to stop the flickering
+        socket.on('actionTaken', () => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = "log";
+            messageDiv.textContent = "Action has been successfully resolved.";
+            document.getElementById('messages').appendChild(messageDiv);
+
+            stopFlickering(); // Stop the flickering
+        });
+
+        // Function to start infinite flickering
+        function startFlickering() {
+            if (!flickerInterval) {
+                flickerInterval = setInterval(() => {
+                    document.body.style.backgroundColor =
+                        document.body.style.backgroundColor === 'red' ? 'white' : 'red';
+                }, 200); // Change every 200ms
+            }
+        }
+
+        // Function to stop flickering
+        function stopFlickering() {
+            if (flickerInterval) {
+                clearInterval(flickerInterval);
+                flickerInterval = null;
+                document.body.style.backgroundColor = 'white'; // Reset to white
+            }
+        }
+
+        // Handle connection errors
+        socket.on('connect_error', (error) => {
+            document.getElementById('status').textContent = "Connection Error: " + error.message;
+            document.getElementById('status').className = "error";
+        });
+    </script>
+</body>
+</html>
