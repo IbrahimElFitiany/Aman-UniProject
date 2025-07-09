@@ -1,0 +1,2 @@
+docker run -d --name mosquitto -p 1883:1883 -v E:/TheUnknown/Programming/BurglarAlarmSystem/Burglar-Alarm-System-main/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitt
+o
