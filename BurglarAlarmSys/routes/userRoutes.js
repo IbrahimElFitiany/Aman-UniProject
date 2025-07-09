@@ -20,39 +20,28 @@ router
 .route('/rooms')
 .get(verifyToken, userController.listRooms);
 
-// add room route
-router
-.route('/addRoom')
-.post(verifyToken, userController.addRoom);
 
-//remove room route
 router
-.route('/removeRoom')
-.post(verifyToken, userController.removeRoom);
+.route('/room')
+.post(verifyToken, userController.addRoom)
+.delete(verifyToken, userController.removeRoom)
+.put (verifyToken, userController.updateRoom);
 
 //==========================================================================================================
 
-// list furniture in room
 router
 .route('/rooms/:roomName/')
-.get(verifyToken,userController.listFurniture);
+.get(verifyToken,userController.listFurniture)
+.post(verifyToken, userController.addFurniture)
 
-
-//add furniture to a room
-router
-.route('/rooms/:roomName/addFurniture')
-.post(verifyToken, userController.addFurniture);
-
-//delete furniture from a room
-router
-.route('/rooms/:roomName/delete_furniture')
-.post(verifyToken, userController.deleteFurniture);
+router.route('/rooms/:roomId')
+.delete(verifyToken, userController.deleteFurniture);
 
 //==========================================================================================================
 
 //click on furniture?? idk
 router
-.route('/rooms/:roomName/:furnitureName')
+.route('/rooms/:roomName/:furnitureId')
 .post(verifyToken, sensorController.clickOnFurniture);
 
 module.exports = router;

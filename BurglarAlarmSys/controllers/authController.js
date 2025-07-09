@@ -4,7 +4,7 @@ const { generateToken } = require('../middleware/authMiddleware');
 const nodemailer = require("../services/nodemailer")
 
 const authController = {
-    // Login user
+
     loginUser: async (req, res) => {
         const { username, password } = req.body;
 
@@ -14,7 +14,6 @@ const authController = {
                 return res.status(404).json({ error: 'User not found' });
             }
 
-            // Compare password with the stored hash
             const isMatch = await bcrypt.compare(password, user.password_hash);
             if (!isMatch) {
                 user.failed_logins += 1;
@@ -24,12 +23,12 @@ const authController = {
                     await user.update({ is_thief: true });
                     const token = generateToken({ id: user.user_id, username: user.username ,isThief: user.is_thief});
 
-                    //send email ll 45s eno bytsr2
+                    // Send notification email to the user about a potential intrusion
                     const mailOptions = {
-                        from: '"BAS" <burglarAlarmsystem9@example.com>',
-                        to: `${user.email}`,
-                        subject: 'EL72 EL BET BYTSR2',
-                        text: 'feh 7ramy fl bet 3ndk 8albn'
+                        from: '"BAS Security Alert" <burglarAlarmsystem9@example.com>',
+                        to: user.email,
+                        subject: 'Security Alert: Possible Intrusion Detected',
+                        text: 'Dear user,\n\nWe have detected suspicious activity at your property. Please check your system immediately or contact support if you believe this is an error.\n\nStay safe,\nAman Security Team'
                     };
 
                     nodemailer.transporter.sendMail(mailOptions, (error, info) => {

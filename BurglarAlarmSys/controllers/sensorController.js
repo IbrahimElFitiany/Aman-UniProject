@@ -37,7 +37,7 @@ const sensorController = {
         }
     },
     clickOnFurniture: async (req, res) => {
-        const { furnitureName, roomName } = req.params;
+        const { furnitureId, roomName } = req.params;
 
         try {
             const currentHouse = await House.findOne({ where: { user_id: req.user.id } });
@@ -49,7 +49,7 @@ const sensorController = {
             if (!currentRoom) return res.status(404).json({ message: 'Room not found' });
 
             const furniture = await Furniture.findOne({
-                where: { room_id: currentRoom.room_id, furniture_name: furnitureName }
+                where: { room_id: currentRoom.room_id, furniture_id: furnitureId }
             });
             if (!furniture) return res.status(404).json({ message: 'Furniture not found' });
 

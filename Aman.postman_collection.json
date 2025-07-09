@@ -1,0 +1,602 @@
+{
+	"info": {
+		"_postman_id": "642a3957-0c39-4d0d-8633-f665f0703a15",
+		"name": "Aman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39265189"
+	},
+	"item": [
+		{
+			"name": "UserModule",
+			"item": [
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Ibrahiim\",\r\n    \"password\": \"223\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{UserbaseURL}}/auth/login",
+									"host": [
+										"{{UserbaseURL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"test\",\r\n    \"password\": \"123\",\r\n    \"email\": \"ibrahimelfsitiany@gmail.com\",\r\n    \"latitude\": 30.226495,\r\n    \"longitude\": 31.482803,\r\n    \"government\": \"Cairo\",\r\n    \"city\": \"sherouk\",\r\n    \"address\": \"17, Golf City, Obour, 11828, Egypt\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{UserbaseURL}}/user/register",
+									"host": [
+										"{{UserbaseURL}}"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "unkown",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"unknown.fbx\",\r\n    \"password\": \"123\",\r\n    \"email\": \"unknown.fbx@gmail.com\",\r\n    \"latitude\": 30.226495,\r\n    \"longitude\": 31.482803,\r\n    \"government\": \"Cairo\",\r\n    \"city\": \"Obour\",\r\n    \"address\": \"17, Golf City, Obour, 11828, Egypt\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/user/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"user",
+												"register"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "242"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"f2-OTZ3ixdqW0X0EXBzYUhyHK5IWD4\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 29 May 2025 18:17:17 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"User and house created successfully\",\n    \"user\": {\n        \"failed_logins\": 0,\n        \"is_thief\": false,\n        \"user_id\": 26,\n        \"username\": \"unknown.fbx\",\n        \"password_hash\": \"$2b$10$VFKIpdtjc6dK7UfCL1DVkejurGKlKeaWv9cKpdJ8OqzOQIwHlh8/.\",\n        \"email\": \"unknown.fbx@gmail.com\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "RoomManagement",
+					"item": [
+						{
+							"name": "Rooms",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{UserbaseURL}}/user/rooms",
+									"host": [
+										"{{UserbaseURL}}"
+									],
+									"path": [
+										"user",
+										"rooms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"roomName\": \"livingRoom\",\r\n    \"hasSensor\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{UserbaseURL}}/user/room",
+									"host": [
+										"{{UserbaseURL}}"
+									],
+									"path": [
+										"user",
+										"room"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"roomName\": \"roomA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{UserbaseURL}}/user/room",
+									"host": [
+										"{{UserbaseURL}}"
+									],
+									"path": [
+										"user",
+										"room"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{UserbaseURL}}/user/room",
+									"host": [
+										"{{UserbaseURL}}"
+									],
+									"path": [
+										"user",
+										"room"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "FurnitureManagement",
+					"item": [
+						{
+							"name": "Furniture",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"furnitureName\": \"tv\",\r\n    \"hasSensor\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{UserbaseURL}}/user/rooms/:roomName",
+									"host": [
+										"{{UserbaseURL}}"
+									],
+									"path": [
+										"user",
+										"rooms",
+										":roomName"
+									],
+									"variable": [
+										{
+											"key": "roomName",
+											"value": "room1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Furniture",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{UserbaseURL}}/user/rooms/:roomName",
+									"host": [
+										"{{UserbaseURL}}"
+									],
+									"path": [
+										"user",
+										"rooms",
+										":roomName"
+									],
+									"variable": [
+										{
+											"key": "roomName",
+											"value": "room1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Furniture",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"furnitureId\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{UserbaseURL}}/user/rooms/:roomId",
+									"host": [
+										"{{UserbaseURL}}"
+									],
+									"path": [
+										"user",
+										"rooms",
+										":roomId"
+									],
+									"variable": [
+										{
+											"key": "roomId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clickOnFurniture",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{UserbaseURL}}/user/rooms/:roomname/:furnitureId",
+									"host": [
+										"{{UserbaseURL}}"
+									],
+									"path": [
+										"user",
+										"rooms",
+										":roomname",
+										":furnitureId"
+									],
+									"variable": [
+										{
+											"key": "roomname",
+											"value": "room1"
+										},
+										{
+											"key": "furnitureId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SecurityModule",
+			"item": [
+				{
+					"name": "Police Track",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJpYnJhaGltZ2FtZTN5IiwiaXNUaGllZiI6dHJ1ZSwiaWF0IjoxNzMyNDcxMzMwLCJleHAiOjE3MzI0NzQ5MzB9.WzM_dFY-QpXE4MRXoHJ2iP8tBhLnfIypRbl8TFNQmiA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SecuritybaseURL}}/police/track",
+							"host": [
+								"{{SecuritybaseURL}}"
+							],
+							"path": [
+								"police",
+								"track"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Track Rooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SecuritybaseURL}}/police/:houseId/trackRooms",
+							"host": [
+								"{{SecuritybaseURL}}"
+							],
+							"path": [
+								"police",
+								":houseId",
+								"trackRooms"
+							],
+							"variable": [
+								{
+									"key": "houseId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fire Alarm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"houseId\": 1,\r\n    \"roomId\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SecuritybaseURL}}/police/firealarm",
+							"host": [
+								"{{SecuritybaseURL}}"
+							],
+							"path": [
+								"police",
+								"firealarm"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJJYnJhaGlpbSIsImlzVGhpZWYiOmZhbHNlLCJpYXQiOjE3NTIwMzEyODgsImV4cCI6MTc1MjAzNDg4OH0.x9A7aOO5qzI_ROjX7fZ-vS8xqaREMI75i3NvH8uRj0U",
+			"type": "default"
+		},
+		{
+			"key": "UserbaseURL",
+			"value": "http://localhost:3000",
+			"type": "default"
+		},
+		{
+			"key": "SecuritybaseURL",
+			"value": "http://localhost:3001",
+			"type": "string"
+		}
+	]
+}

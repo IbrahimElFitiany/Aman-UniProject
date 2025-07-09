@@ -5,7 +5,6 @@ const {sensor} = require("../services/mqttService")
 
 const userController = {
 
-    // Register
     register: async (req, res) => {
         const { username, password , email , latitude , longitude , address} = req.body;
 
@@ -57,7 +56,7 @@ const userController = {
             res.status(500).json({ error: error.message});
         }
     },
-    //list rooms
+
     listRooms: async (req, res) => {
 
 
@@ -81,17 +80,15 @@ const userController = {
             res.status(500).json({ error: error.message });
         }
     },
-    // Add Room
+
     addRoom: async (req, res) => {
 
         const { roomName, hasSensor} = req.body;
 
-        // check for fields
         if (!roomName || hasSensor == null) 
             { return res.status(400).json({ error: "Enter All fields" })
         };
 
-        //find the house of the current logged in user using user token from the req
         const house = await House.findOne({ where: { user_id: req.user.id } }); 
 
         // Check if a room with the same name already exists in the house
@@ -131,7 +128,6 @@ const userController = {
             res.status(500).json({ error: error.message});
         }
     },
-    // Remove Room
     removeRoom: async (req, res) => {
         const { roomName } = req.body;
     
@@ -171,15 +167,12 @@ const userController = {
             res.status(500).json({ error: error.message });
         }
     },
-    //update Room
     updateRoom: async (req, res)=>{
-
+        res.status(500).json({ error: "Not implemented yet" });
     },
 
-    //=============================================
 
 
-    //list Furniture in Room
     listFurniture: async (req, res) => {
         const { roomName } = req.params; // Extract roomName from URL parameters
     
@@ -216,7 +209,6 @@ const userController = {
             res.status(500).json({ error: error.message });
         }
     },
-    // add Furniture
     addFurniture: async (req, res) => {
         const { roomName } = req.params; // Extract roomName from URL parameters
         const { furnitureName , hasSensor , user } = req.body; // Extract furnitureName from the request body
@@ -264,32 +256,29 @@ const userController = {
             res.status(500).json({ error: error.message });
         }
     },
-    //delete Furniture
     deleteFurniture: async (req, res) => {
-        const {roomName} = req.params; // Extract roomName from URL parameters
-        const {furnitureName} = req.body; // Extract furnitureName from the request body
-    
-        // Validate required fields
-        if (!furnitureName) {
+        const {roomId} = req.params;
+        const {furnitureId} = req.body;
+
+        console.log( "ajdk;fjak;ldfj;kladjfkj ;JKk;djfa :   -------------- " + roomId)
+        if (!furnitureId) {
             return res.status(400).json({ error: "Please provide furnitureName" });
         }
     
         const userHouse = await House.findOne({ where: { user_id: req.user.id } }); 
 
         try {
-            // Find the room by its name
-            const room = await Room.findOne({ where: { room_name: roomName , house_id: userHouse.house_id}});
+            const room = await Room.findOne({ where: { room_id: roomId , house_id: userHouse.house_id}});
     
-            // Handle case where the room is not found
             if (!room) {
                 return res.status(404).json({ error: "Room not found" });
             }
 
-            const existingFurniture = await Furniture.findOne({where:{room_id:room.room_id , furniture_name: furnitureName}})
+            const existingFurniture = await Furniture.findOne({where:{room_id:room.room_id , furniture_id: furnitureId}})
             
             
             if (!existingFurniture) {
-                return res.status(400).json({ error: "No furniture with this name." });
+                return res.status(400).json({ error: "No furniture with this id." });
             }
 
             await existingFurniture.destroy();
@@ -299,16 +288,10 @@ const userController = {
                     where: { sensor_id: existingFurniture.sensor_id }
                 });
             }
-            
-            
-
-    
-            // Respond with success and the created furniture object
-            res.status(201).json({
+                res.status(201).json({
                 message: "Furniture deleted successfully",
             });
         } catch (error) {
-            // Handle any server-side errors
             res.status(500).json({ error: error.message });
         }
     },

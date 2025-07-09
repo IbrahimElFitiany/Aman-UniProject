@@ -11,15 +11,15 @@ const HouseModel = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'users', // Assuming your users table is named 'users'
+                model: 'users',
                 key: 'user_id',
             },
-            onDelete: 'CASCADE', // Ensures houses are deleted if the user is deleted
-            unique: true, // One house per user
+            onDelete: 'CASCADE',
+            unique: true,
         },
         address: {
             type: DataTypes.STRING(255),
-            allowNull: false, // Adjust to false if address is required
+            allowNull: false,
         },
         longitude: {
             type: DataTypes.FLOAT,
@@ -31,7 +31,7 @@ const HouseModel = (sequelize) => {
         },
     }, {
         tableName: 'houses',
-        timestamps: false, // Disable timestamps if not needed
+        timestamps: false,
     });
 
     return House;
