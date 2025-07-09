@@ -6,6 +6,20 @@
 > It contains several architectural and design flaws and **does not reflect my current level of experience, knowledge, or development practices**. Please view this project as an early-stage academic prototype, not a polished product.
 
 ---
+## 🔁 Rebuild Vision / Future Plans
+
+In the next version, [**AmanX**](https://github.com/IbrahimElFitiany/AmanX), the system will function more like a real-world security service such as **Ring** or **ADT**, with structured monitoring, dispatching, and sensor handling.
+
+The new implementation will include:
+
+- A proper simulation of a security company model (like ADT or Ring)
+- **TypeScript** with **NestJS** for a modular and maintainable backend
+- **Clean Architecture** with clear separation between domain, application, and infrastructure layers
+- **Prisma ORM** with a **code-first** approach
+- Proper use of environment variables (`.env`) for secure config management
+- Fully RESTful endpoints with proper validation, error handling, and status codes
+
+This rebuild is planned to reflect my current level of experience and software engineering principles.
 
 ## 📌 Overview
 
